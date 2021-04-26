@@ -15,7 +15,17 @@ pserve development.yaml
 
 ## Installation
 
-WILL BE FILLED OUT before releasing.
+## With poetry
+
+```
+poetry add plaster-yaml
+```
+
+## With pip
+
+```
+pip install plaster-yaml
+```
 
 ## Usage
 
