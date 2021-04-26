@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "plaster_yaml"
+version = "0.1.0"
+description = "A plaster pluging to configure pyramid app with Yaml"
+readme = "README.md"
+authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
+include = ["CHANGELOG.md"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+plaster = "^1.0"
+PyYAML = "^5.4.1"
+
+[tool.poetry.dev-dependencies]
+black = "^21.4b0"
+isort = "^5.8.0"
+# Tests
+gunicorn = "^20.1.0"
+PasteDeploy = "^2.1.1"
+pytest = "^5.2"
+waitress = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
