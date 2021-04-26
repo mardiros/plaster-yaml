@@ -7,6 +7,25 @@ import pkg_resources
 import plaster
 import yaml
 
+DEFAULT_LOGGING_CONFIG = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": "%(asctime)s [%(levelname)s]: %(name)s - %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "stream": "ext://sys.stderr",
+            "formatter": "console",
+        },
+    },
+    "root": {"level": "ERROR", "handlers": ["console"]},
+}
+
 
 def resolve_use(use: str, entrypoint: str) -> Callable:
     try:
@@ -60,7 +79,7 @@ class Loader(plaster.ILoader):
         return settings
 
     def setup_logging(self, config_vars):
-        dictConfig(self._conf.get("logging", {}))
+        dictConfig(self._conf.get("logging", DEFAULT_LOGGING_CONFIG))
 
     def get_wsgi_server(self, name=None, defaults=None):
         settings = self.get_settings("server", defaults)
