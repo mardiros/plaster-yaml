@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "plaster_yaml"
-version = "0.1.0"
-description = "A plaster pluging to configure pyramid app with Yaml"
+version = "0.1.1"
+description = "A plaster plugin to configure pyramid app with Yaml"
 readme = "README.md"
 authors = ["Guillaume Gauvrit <guillaume@gauvr.it>"]
 include = ["CHANGELOG.md"]
