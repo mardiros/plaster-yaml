@@ -45,7 +45,7 @@ def test_get_settings(loader):
         "pyramid.default_locale_name": "en",
         "pyramid.includes": [],
         "pyramid.reload_templates": False,
-        "use": "egg:my_dummy_app",
+        "use": "egg:pyramid_helloworld",
     }
 
 
@@ -75,5 +75,21 @@ def test_get_wsgi_server(serve_paste, loader):
 
 @pytest.mark.usefixtures("loader")
 def test_get_wsgi_app(loader):
-    with pytest.raises(DistributionNotFound):
-        wsgi_app = loader.get_wsgi_app()
+    wsgi_app = loader.get_wsgi_app()
+    assert wsgi_app.registry.settings["dummy_path"] == f"{here}/dummy_file.yaml"
+
+    http_start_response = {}
+
+    def start_response(status, headers):
+        http_start_response["status"] = status
+        http_start_response["headers"] = headers
+
+    resp = wsgi_app({"REQUEST_METHOD": "GET"}, start_response)
+    assert resp == [b"Hello World!"]
+    assert http_start_response == {
+        "headers": [
+            ("Content-Type", "text/html; charset=UTF-8"),
+            ("Content-Length", "12"),
+        ],
+        "status": "200 OK",
+    }

@@ -4,7 +4,7 @@
 ###
 
 app:
-  "use": "egg:my_dummy_app  "
+  "use": "egg:pyramid_helloworld"
 
   "pyramid.reload_templates": false
   "pyramid.debug_authorization": false
