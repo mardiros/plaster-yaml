@@ -36,7 +36,7 @@ You need to register this plugin in your `pyproject.toml`:
 
 ```
 [tool.poetry.plugins."paste.app_factory"]
-main = "emailcms_api.entrypoints.wsgi:main"
+main = "<PATH_TO_MODULE_CONTAINING_MAIN>:main"
 
 [tool.poetry.plugins."plaster.loader_factory"]
 "file+yaml" = "plaster_yaml:Loader"
