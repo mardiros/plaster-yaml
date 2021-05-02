@@ -78,6 +78,9 @@ class Loader(plaster.ILoader):
                     settings[key] = val % self.defaults
         return settings
 
+    def get_wsgi_app_settings(self, name=None, defaults=None):
+        return self.get_settings(name, defaults)
+
     def setup_logging(self, config_vars):
         dictConfig(self._conf.get("logging", DEFAULT_LOGGING_CONFIG))
 

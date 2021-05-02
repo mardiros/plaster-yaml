@@ -48,6 +48,20 @@ def test_get_settings(loader):
         "use": "egg:pyramid_helloworld",
     }
 
+@pytest.mark.usefixtures("loader")
+def test_get_wsgi_app_settings(loader):
+    settings = loader.get_wsgi_app_settings()
+    assert settings == {
+        "dummy_path": f"{here}/dummy_file.yaml",
+        "pyramid.debug_authorization": False,
+        "pyramid.debug_notfound": False,
+        "pyramid.debug_routematch": False,
+        "pyramid.default_locale_name": "en",
+        "pyramid.includes": [],
+        "pyramid.reload_templates": False,
+        "use": "egg:pyramid_helloworld",
+    }
+
 
 @patch("plaster_yaml.loader.dictConfig")
 @pytest.mark.usefixtures("loader")
