@@ -3,17 +3,7 @@ import pathlib
 from logging.config import dictConfig
 from typing import Callable
 
-import sys
-
-if sys.version_info < (3, 10):
-    import importlib_metadata
-
-    class importlib:
-        pass
-
-    setattr(importlib, "metadata", importlib_metadata)
-else:
-    import importlib.metadata
+from importlib import metadata
 
 import plaster
 import yaml
@@ -50,7 +40,7 @@ def resolve_use(use: str, entrypoint: str) -> Callable:
     if scheme != "egg":
         raise ValueError(f"{use}: unsupported scheme {scheme}")
 
-    eps = importlib.metadata.entry_points(group=entrypoint, name=name)
+    eps = metadata.entry_points(group=entrypoint, name=name)
     (runner,) = [ep for ep in eps if ep.module.split(".")[0] == pkg]
     return runner.load()
 
