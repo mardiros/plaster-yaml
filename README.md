@@ -77,7 +77,7 @@ follows:
 [project.entry-points.'paste.app_factory']
 main = '<my_app>:main']
 [project.entry-points.'plaster.loader_factory']
-yaml = 'plaster_yaml:Loader'
+'file+yaml' = 'plaster_yaml:Loader'
 ```
 
 ### With `setup.py`
@@ -95,7 +95,7 @@ setup(
     ...,
     entry_points={
      'paste.app_factory': ['main = <my_app>:main'],
-     'plaster.loader_factory': ['yaml = plaster_yaml:Loader'],
+     'plaster.loader_factory': ['file+yaml = plaster_yaml:Loader'],
      ...
     },
 )
