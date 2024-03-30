@@ -2,10 +2,11 @@
 
 ## Introduction
 
-By default, Pyramid use a paste format file to loads its configuration,
+By default, Pyramid uses a PasteDeploy (.ini) file format for its
+configuration.
 
-here is a plugin to use a yaml file instead to configure your pyramid
-application.
+When the ``plaster-yaml`` a plugin is used, Pyramid applications are
+instead configured with a YAML configuration file.
 
 e.g.
 
@@ -31,7 +32,7 @@ pip install plaster-yaml
 
 ## With poetry
 
-You need to register this plugin in your `pyproject.toml`:
+The plugin is registered in your `pyproject.toml, as follows`:
 
 
 ```
@@ -42,7 +43,9 @@ main = "<PATH_TO_MODULE_CONTAINING_MAIN>:main"
 "file+yaml" = "plaster_yaml:Loader"
 ```
 
-You must run `poetry install` to finalize the registration.
+When developing, using an "editable" install that executes your
+unpackaged code, `poetry install` must be run to finalize the
+registration.
 
 ## With setuptools
 
@@ -57,16 +60,17 @@ setup(
 )
 ```
 
-You must run `pip install -e .` to finallize the registration.
+When developing, using an "editable" install that executes your
+unpackaged code, `pip install -e .` must be run to finalize the
+registration.
 
-## Troubleshouting
+## Troubleshooting
 
-If you get the following exception:
+The following exception means that you did not register the plugin:
 
 ```
 plaster.exceptions.LoaderNotFound: Could not find a matching loader for the scheme "file+yaml", protocol "wsgi".
 ```
 
-It meast that you did not register the pluging. Read the usage section
-for to register it properly.
-
+Read the relevant "Usage" sub-section, above, to find out how to
+register it properly.
