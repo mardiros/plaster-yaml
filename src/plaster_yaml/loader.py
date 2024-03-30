@@ -71,6 +71,9 @@ class Loader(plaster.ILoader):
         if defaults is not None:
             result.update(defaults)
 
+        if section not in self._conf:
+            return {}
+        
         settings = self._conf[section].copy()
 
         for key, val in settings.items():
