@@ -153,3 +153,74 @@ plaster.exceptions.LoaderNotFound: Could not find a matching loader for the sche
 
 Read the relevant "Usage" sub-section, above, to find out how to
 register it properly.
+
+## Appendix: A sample YAML config file for Pyramid
+
+The sample YAML config file shown here configures the MYAPP Pyramid
+application.  The YAML mapping of the `app` key is presented to the
+Pyramid application as a Python dictionary.  (Excepting the "use"
+key.)
+
+Within your [view callable](
+https://docs.pylonsproject.org/projects/pyramid/en/2.0-branch/glossary.html#term-view-callable)
+code, the code which processes a web request and produces a response
+for rendering, the "my_config_data" configuration value is available
+via `request.registry.settings["my_config_data"]`.  That is, if the
+usual coding idiom is used and your view is defined with `def
+myview(request):`.
+
+Likewise, the settings dict is available to your configuration code as
+`settings`.  Again, assuming the usual coding idiom of `def
+main(global_config, **settings):` is used in your `__init__.py`.  The
+`global_config` variable is then a dict containing the content of the
+config file's top-level `DEFAULT` key, if any.
+
+For more information see: [the Pyramid Startup documentation](
+https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/startup.html)
+
+```
+###
+# app configuration
+# http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/environment.html
+###
+
+app:
+  "use": "egg:MYAPP"
+
+  "pyramid.reload_templates": false
+  "pyramid.debug_authorization": false
+  "pyramid.debug_notfound": false
+  "pyramid.debug_routematch": false
+  "pyramid.default_locale_name": en
+  "pyramid.includes": []
+
+  "my_config_data": "Fe Fi Fo Fum"
+
+DEFAULT:
+  some_data_which_assists_app_startup: {automatic: false}
+
+server:
+  use: egg:waitress#main
+  host: 0.0.0.0
+  port: 6543
+
+logging:
+  version: 1
+  disable_existing_loggers: False
+  formatters:
+    console:
+      format: '%(asctime)s [%(levelname)s]: %(name)s - %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      stream: ext://sys.stdout
+      formatter: console
+  root:
+    level: INFO
+    handlers:
+      - console
+  loggers:
+    dummy:
+      level: DEBUG
+```
