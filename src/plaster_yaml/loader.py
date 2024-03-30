@@ -51,7 +51,7 @@ def resolve_use(use: str, entrypoint: str) -> Callable:
         raise ValueError(f"{use}: unsupported scheme {scheme}")
 
     eps = importlib.metadata.entry_points(group=entrypoint, name=name)
-    (runner,) = [ep for ep in eps if ep.module == pkg]
+    (runner,) = [ep for ep in eps if ep.module.split(".")[0] == pkg]
     return runner.load()
 
 
