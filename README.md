@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Configure your applications with YAML structured data.
+Configure your applications with YAML (and JSON) structured data.
 
 The `plaster-yaml` plugin lets applications, notably [Pyramid](
 https://trypyramid.com) applications but also other applications that
@@ -12,13 +12,18 @@ interface, accept YAML configuration sources.
 
 By default, Pyramid (etc.) uses the PasteDeploy (.ini) file format for
 its configuration.  With the `plaster-yaml` plugin, Pyramid
-applications can instead be configured with a YAML configuration file.
+applications can also be configured with a YAML configuration file.
 
-For example:
+For example, one application can be run either of these ways:
 
 ```
 pserve development.yaml
+pserve development.ini
 ```
+
+Because JSON is a subset of YAML `plaster-yaml` also supports JSON
+configuration files.  The "With `pyproject.toml` and a `setuptools`
+`build` back-end" section below contains a JSON example.
 
 ## Installation
 
@@ -40,6 +45,16 @@ The `plaster-yaml` plugin must be "registered".  This is done by
 configuring a Python package "entry point" using the packaging tool of
 your choice.  How this is done depends on the packaging tool.
 Examples are given below.
+
+It is the entry point's name, as will be clear in the examples, that
+"connects" the filename extension of a configuration file to the
+loader able to parse it.  While it is not necessary to know the
+details, here are the basic concepts: The entry point's name is a
+[config_uri](
+https://docs.pylonsproject.org/projects/plaster/en/latest/glossary.html#term-config-uri).
+The scheme is that part of the URI to the left of the colon, and is
+itself divisible.  One of the scheme's components is matched with the
+filename extension to select the correct loader.
 
 When developing, using an [editable](
 https://setuptools.pypa.io/en/latest/userguide/development_mode.html)
@@ -92,6 +107,18 @@ main = '<my_app>:main']
 
 [project.entry-points.'plaster.loader_factory']
 'file+yaml' = 'plaster_yaml:Loader'
+```
+
+Adding a final line to the example lets the application support JSON
+in additional to YAML and .ini config files:
+
+```
+[project.entry-points.'paste.app_factory']
+main = '<my_app>:main']
+
+[project.entry-points.'plaster.loader_factory']
+'file+yaml' = 'plaster_yaml:Loader'
+'file+json' = 'plaster_yaml:Loader'
 ```
 
 ### With `setup.py`
