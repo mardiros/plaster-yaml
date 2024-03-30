@@ -1,15 +1,6 @@
-import sys
+from importlib import metadata
 
-if sys.version_info < (3, 10):
-    import importlib_metadata
+from .loader import Loader
 
-    class importlib:
-        pass
-
-    setattr(importlib, "metadata", importlib_metadata)
-else:
-    import importlib.metadata
-
-from .loader import Loader  # noqa
-
-__version__ = importlib.metadata.version("plaster-yaml")
+__all__ = ["Loader"]
+__version__ = metadata.version("plaster-yaml")
