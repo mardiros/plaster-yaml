@@ -158,8 +158,9 @@ register it properly.
 
 The sample YAML config file shown here configures the MYAPP Pyramid
 application.  The YAML mapping of the `app` key is presented to the
-Pyramid application as a Python dictionary.  (Excepting the "use"
-key.)
+Pyramid application as a Python dictionary.  (Excepting the "use" key,
+which is where the system is told that the "MYAPP" python package is
+the one to use.)
 
 Within your [view callable](
 https://docs.pylonsproject.org/projects/pyramid/en/2.0-branch/glossary.html#term-view-callable)
