@@ -2,11 +2,17 @@
 
 ## Introduction
 
-By default, Pyramid uses a PasteDeploy (.ini) file format for its
-configuration.
+Configure your applications with YAML structured data.
 
-When the `plaster-yaml` plugin is used, Pyramid applications are
-instead configured with a YAML configuration file.
+The `plaster-yaml` plugin lets applications, notably [Pyramid](
+https://trypyramid.com) applications but also other applications that
+use the [plaster](
+https://docs.pylonsproject.org/projects/plaster/en/latest/) loader
+interface, accept YAML configuration sources.
+
+By default, Pyramid (etc.) uses the PasteDeploy (.ini) file format for
+its configuration.  With the `plaster-yaml` plugin, Pyramid
+applications can instead be configured with a YAML configuration file.
 
 For example:
 
@@ -45,6 +51,13 @@ No special steps must be taken after configuring a entry point and
 (correctly) packaging your project.  The `plaster-yaml` plugin is
 registered when your project's package is installed.
 
+NOTE:\
+All of the examples given below show not only how the one entry point
+required to use `plaster-yaml` is configured, but also show how to
+configure the entry point that makes your application into a WSGI,
+web-based, application.  The WSGI entry point is always required for
+Pyramid web applications.
+
 ## With poetry
 
 Plugin registration is configured in your `pyproject.toml`, as
@@ -76,6 +89,7 @@ follows:
 ```
 [project.entry-points.'paste.app_factory']
 main = '<my_app>:main']
+
 [project.entry-points.'plaster.loader_factory']
 'file+yaml' = 'plaster_yaml:Loader'
 ```
