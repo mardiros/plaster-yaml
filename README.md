@@ -1,8 +1,8 @@
 # plaster-yaml
 
-## Introduction
-
 Configure your applications with YAML (and JSON) structured data.
+
+## Introduction
 
 The `plaster-yaml` plugin lets applications, notably [Pyramid](
 https://trypyramid.com) applications but also other applications that
