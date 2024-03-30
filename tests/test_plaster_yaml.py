@@ -3,7 +3,6 @@ from unittest.mock import call, patch
 
 import pytest
 from gunicorn.app.pasterapp import serve as gunicorn_serve_paste
-from pkg_resources import DistributionNotFound
 from waitress import serve_paste as waitress_serve_paste
 
 from plaster_yaml.loader import resolve_use
