@@ -35,10 +35,11 @@ configuring a Python package "entry point" using the packaging tool of
 your choice.  How this is done depends on the packaging tool.
 Examples are given below.
 
-When developing, using an "editable" install that executes your
-unpackaged code, after changing your package's configuration your
-packaging tool must be run in order to finalize the registration.
-Examples are given below.
+When developing, using an [editable](
+https://setuptools.pypa.io/en/latest/userguide/development_mode.html)
+install that executes your unpackaged code, after changing your
+package's configuration your packaging tool must be run in order to
+finalize the registration.  Examples are given below.
 
 No special steps must be taken after configuring a entry point and
 (correctly) packaging your project.  The `plaster-yaml` plugin is
