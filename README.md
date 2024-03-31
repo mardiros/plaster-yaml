@@ -2,6 +2,8 @@
 
 Configure your applications with YAML (and JSON) structured data.
 
+[![codecov](https://codecov.io/gh/mardiros/plaster-yaml/graph/badge.svg?token=LKGPH2OJDN)](https://codecov.io/gh/mardiros/plaster-yaml)
+
 ## Introduction
 
 The `plaster-yaml` plugin lets applications, notably [Pyramid](
