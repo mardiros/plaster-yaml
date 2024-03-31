@@ -11,8 +11,8 @@ license = "BSD-derived"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+importlib-metadata = { version = "^7.1.0", python = "<3.10" }
 plaster = "^1.0"
-# Upgraded PyYAML from ^5.4 due to: https://github.com/yaml/pyyaml/issues/601
 PyYAML = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
