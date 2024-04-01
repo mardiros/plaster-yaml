@@ -1,3 +1,13 @@
+## Version 1.0.1 - 2024-04-01
+
+* Fix python 3.8 and 3.9 usage by using importlib_metadata
+* Improve the readme file.
+
+## Version 1.0.0 - 2024-03-30
+
+* Remove pkg_resources in favor has importlib.metadata
+* Remove python 3.7 support
+
 ## Version 0.2.0 - 2021-05-02
 
 * Implementation get_wsgi_app_settings for the Loader
