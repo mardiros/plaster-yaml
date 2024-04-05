@@ -210,7 +210,7 @@ server:
 
 logging:
   version: 1
-  disable_existing_loggers: False
+  disable_existing_loggers: false
   formatters:
     console:
       format: '%(asctime)s [%(levelname)s]: %(name)s - %(message)s'
