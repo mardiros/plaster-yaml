@@ -58,7 +58,7 @@ class Loader(plaster.ILoader):
             self._conf = yaml.safe_load(stream)
 
     def get_sections(self):
-        return ["app"]
+        return list(self._conf.keys())
 
     def get_settings(self, section=None, defaults=None):
         # fallback to the fragment from config_uri if no section is given
