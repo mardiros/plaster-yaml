@@ -30,7 +30,7 @@ def test_defaults(loader):
 
 @pytest.mark.usefixtures("loader")
 def test_get_sections(loader):
-    assert loader.get_sections() == ["app"]
+    assert loader.get_sections() == ["app", "server", "logging"]
 
 
 @pytest.mark.usefixtures("loader")
