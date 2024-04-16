@@ -33,9 +33,10 @@ def test_get_sections(loader):
     assert loader.get_sections() == ["app"]
 
 
+@pytest.mark.parametrize("section", ["app", "missing"])
 @pytest.mark.parametrize("raw", ["False", "True"])
 @pytest.mark.usefixtures("loader")
-def test_get_settings(loader, raw):
+def test_get_settings(loader, section, raw):
     fixed_settings = {
         "pyramid.debug_authorization": False,
         "pyramid.debug_notfound": False,
@@ -46,7 +47,11 @@ def test_get_settings(loader, raw):
         "use": "egg:pyramid_helloworld",
     }
 
-    settings = loader.get_settings(section="app", raw=raw)
+    settings = loader.get_settings(section=section, raw=raw)
+
+    if section == "missing":
+        assert settings == {}
+        return
 
     dummy_path = settings["dummy_path"]
     if raw:
