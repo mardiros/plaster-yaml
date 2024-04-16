@@ -60,7 +60,7 @@ class Loader(plaster.ILoader):
     def get_sections(self):
         return ["app"]
 
-    def get_settings(self, section=None, defaults=None):
+    def get_settings(self, section=None, defaults=None, *, raw=False):
         # fallback to the fragment from config_uri if no section is given
         if not section:
             section = self.uri.fragment or "app"
@@ -76,10 +76,11 @@ class Loader(plaster.ILoader):
         
         settings = self._conf[section].copy()
 
-        for key, val in settings.items():
-            if isinstance(val, str):
-                if "%(here)s" in val:
-                    settings[key] = val % self.defaults
+        if not raw:
+            for key, val in settings.items():
+                if isinstance(val, str):
+                    if "%(here)s" in val:
+                        settings[key] = val % self.defaults
         return settings
 
     def get_wsgi_app_settings(self, name=None, defaults=None):

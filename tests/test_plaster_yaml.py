@@ -33,11 +33,10 @@ def test_get_sections(loader):
     assert loader.get_sections() == ["app"]
 
 
+@pytest.mark.parametrize("raw", ["False", "True"])
 @pytest.mark.usefixtures("loader")
-def test_get_settings(loader):
-    settings = loader.get_settings(section="app")
-    assert settings == {
-        "dummy_path": f"{here}/dummy_file.yaml",
+def test_get_settings(loader, raw):
+    fixed_settings = {
         "pyramid.debug_authorization": False,
         "pyramid.debug_notfound": False,
         "pyramid.debug_routematch": False,
@@ -46,6 +45,18 @@ def test_get_settings(loader):
         "pyramid.reload_templates": False,
         "use": "egg:pyramid_helloworld",
     }
+
+    settings = loader.get_settings(section="app", raw=raw)
+
+    dummy_path = settings["dummy_path"]
+    if raw:
+        assert dummy_path == "%(here)s/dummy_file.yaml"
+    else:
+        assert dummy_path == f"{here}/dummy_file.yaml"
+
+    del settings["dummy_path"]
+    assert settings == fixed_settings
+
 
 @pytest.mark.usefixtures("loader")
 def test_get_wsgi_app_settings(loader):
