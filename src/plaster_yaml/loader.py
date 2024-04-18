@@ -1,12 +1,13 @@
 """Implement a loader for plaster using yaml format."""
+
 import pathlib
 from logging.config import dictConfig
 from typing import Callable
 
-from .compat import importlib_metadata
-
 import plaster
 import yaml
+
+from .compat import importlib_metadata
 
 DEFAULT_LOGGING_CONFIG = {
     "version": 1,
@@ -73,7 +74,7 @@ class Loader(plaster.ILoader):
 
         if section not in self._conf:
             return {}
-        
+
         settings = self._conf[section].copy()
 
         for key, val in settings.items():
