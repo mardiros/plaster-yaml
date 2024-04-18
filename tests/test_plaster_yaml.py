@@ -47,6 +47,7 @@ def test_get_settings(loader):
         "use": "egg:pyramid_helloworld",
     }
 
+
 @pytest.mark.usefixtures("loader")
 def test_get_wsgi_app_settings(loader):
     settings = loader.get_wsgi_app_settings()
