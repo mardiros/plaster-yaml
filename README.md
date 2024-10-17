@@ -85,8 +85,6 @@ follows:
 [tool.poetry.plugins."paste.app_factory"]
 main = "<PATH_TO_MODULE_CONTAINING_MAIN>:main"
 
-[tool.poetry.plugins."plaster.loader_factory"]
-"file+yaml" = "plaster_yaml:Loader"
 ```
 
 When developing, run `poetry install` to register your plugin after
@@ -107,9 +105,6 @@ follows:
 ```
 [project.entry-points.'paste.app_factory']
 main = '<my_app>:main']
-
-[project.entry-points.'plaster.loader_factory']
-'file+yaml' = 'plaster_yaml:Loader'
 ```
 
 Adding a final line to the example lets the application support JSON
@@ -120,7 +115,6 @@ in additional to YAML and .ini config files:
 main = '<my_app>:main']
 
 [project.entry-points.'plaster.loader_factory']
-'file+yaml' = 'plaster_yaml:Loader'
 'file+json' = 'plaster_yaml:Loader'
 ```
 
@@ -139,7 +133,6 @@ setup(
     ...,
     entry_points={
      'paste.app_factory': ['main = <my_app>:main'],
-     'plaster.loader_factory': ['file+yaml = plaster_yaml:Loader'],
      ...
     },
 )
