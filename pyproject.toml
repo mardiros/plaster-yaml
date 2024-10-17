@@ -23,7 +23,7 @@ black = "^24.3.0"
 isort = "^5.13.2"
 # Tests
 gunicorn = "^20.1.0"
-PasteDeploy = "^2.1.1"
+PasteDeploy = "^3.1.0"
 pytest = "^6.2.5"
 waitress = "^2.0.0"
 pyramid-helloworld = "^1.1.0"
