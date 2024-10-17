@@ -42,8 +42,12 @@ def resolve_use(use: str, entrypoint: str) -> Callable:
         raise ValueError(f"{use}: unsupported scheme {scheme}")
 
     eps = importlib_metadata.entry_points(group=entrypoint, name=name)
-    (runner,) = [ep for ep in eps if ep.module.split(".")[0] == pkg]
-    return runner.load()
+    runners = [ep for ep in eps if ep.module.split(".")[0] == pkg]
+    if not runners:
+        raise ValueError(f"Entrypoint {entrypoint} is missing for {use}")
+    if len({ep.value for ep in runners}) > 1:
+        raise ValueError(f"Multiple value found for entrypoint {entrypoint} for {use}")
+    return runners[0].load()
 
 
 class Loader(plaster.ILoader):
