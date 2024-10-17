@@ -1,5 +1,7 @@
 """Implement a loader for plaster using yaml format."""
 
+import re
+from importlib.metadata import EntryPoint
 import pathlib
 from logging.config import dictConfig
 from typing import Callable
@@ -29,6 +31,18 @@ DEFAULT_LOGGING_CONFIG = {
 }
 
 
+RE_SANITIZE = re.compile("[^a-zA-Z0-9_]")
+
+
+def sanitize_name(name):
+    sanitized_name = RE_SANITIZE.sub("-", name)
+    return sanitized_name.lower()
+
+
+def match_(ep: EntryPoint, pkg: str):
+    return sanitize_name(ep.module).startswith(sanitize_name(pkg))
+
+
 def resolve_use(use: str, entrypoint: str) -> Callable:
     try:
         pkg, name = use.split("#")
@@ -42,9 +56,11 @@ def resolve_use(use: str, entrypoint: str) -> Callable:
         raise ValueError(f"{use}: unsupported scheme {scheme}")
 
     eps = importlib_metadata.entry_points(group=entrypoint, name=name)
-    runners = [ep for ep in eps if ep.module.split(".")[0] == pkg]
+
+    runners = [ep for ep in eps if match_(ep, pkg)]
     if not runners:
         raise ValueError(f"Entrypoint {entrypoint} is missing for {use}")
+
     if len({ep.value for ep in runners}) > 1:
         raise ValueError(f"Multiple value found for entrypoint {entrypoint} for {use}")
     return runners[0].load()
