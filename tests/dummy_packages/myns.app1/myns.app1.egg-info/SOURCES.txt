@@ -1,0 +1,9 @@
+setup.py
+myns/__init__.py
+myns.app1.egg-info/PKG-INFO
+myns.app1.egg-info/SOURCES.txt
+myns.app1.egg-info/dependency_links.txt
+myns.app1.egg-info/entry_points.txt
+myns.app1.egg-info/namespace_packages.txt
+myns.app1.egg-info/top_level.txt
+myns/app1/__init__.py
