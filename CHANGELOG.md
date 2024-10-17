@@ -1,3 +1,7 @@
+## 1.1.1  -  2024-10-17
+
+* Add an experimental feature to get it working with uwsgi 
+
 ## 1.1.0  -  2024-10-17
 
 * Register the plaster yaml entrypoints directly, the app does not need to register it
