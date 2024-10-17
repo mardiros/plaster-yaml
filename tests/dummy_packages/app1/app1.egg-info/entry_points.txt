@@ -1,0 +1,4 @@
+[paste.app_factory]
+duplicate_err = app1:main
+duplicate_ok = app1:main
+main = app1:main

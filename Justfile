@@ -12,6 +12,15 @@ test: lint unittest
 unittest test_suite=default_unittest_suite:
     poetry run pytest -sxv {{test_suite}}
 
+#[doc("write eggs for testing")]
+write_eggs:
+    #!/bin/bash
+    for app in tests/dummy_packages/*; do
+        pushd . > /dev/null
+        cd $app && python setup.py egg_info
+        popd > /dev/null
+    done
+
 lf:
     poetry run pytest -sxvvv --lf
 
