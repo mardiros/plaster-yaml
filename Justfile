@@ -2,7 +2,7 @@ package := 'plaster_yaml'
 default_unittest_suite := 'tests'
 
 install:
-    poetry install --with dev
+    poetry install --with dev --with uwsgi
 
 lint:
     poetry run flake8 && echo "$(tput setaf 10)Success: no lint issue$(tput setaf 7)"
