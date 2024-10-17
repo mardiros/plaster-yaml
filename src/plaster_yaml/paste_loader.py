@@ -7,9 +7,12 @@ The paste.deploy patch: https://github.com/Pylons/pastedeploy/pull/46/files
 from logging.config import dictConfig
 from pathlib import Path
 
-
 try:
-    from paste.deploy.loadwsgi import _Loader, LoaderContext, loadcontext  # type: ignore
+    from paste.deploy.loadwsgi import (
+        LoaderContext,
+        _Loader,  # type: ignore
+        loadcontext,
+    )
 except ImportError:
 
     class _Loader:

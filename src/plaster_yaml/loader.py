@@ -1,8 +1,8 @@
 """Implement a loader for plaster using yaml format."""
 
+import pathlib
 import re
 from importlib.metadata import EntryPoint
-import pathlib
 from logging.config import dictConfig
 from typing import Callable
 
