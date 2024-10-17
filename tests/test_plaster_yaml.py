@@ -1,4 +1,3 @@
-import pathlib
 from unittest.mock import call, patch
 
 import pytest
@@ -6,8 +5,6 @@ from gunicorn.app.pasterapp import serve as gunicorn_serve_paste
 from waitress import serve_paste as waitress_serve_paste
 
 from plaster_yaml.loader import resolve_use
-
-here = str(pathlib.Path(__file__).parent.absolute())
 
 
 def test_resolve_waitress():
@@ -21,10 +18,10 @@ def test_resolve_gunicorn():
 
 
 @pytest.mark.usefixtures("loader")
-def test_defaults(loader):
+def test_defaults(root, loader):
     assert loader.defaults == {
-        "__file__": f"{here}/config.yaml",
-        "here": here,
+        "__file__": f"{root}/config.yaml",
+        "here": str(root),
     }
 
 
@@ -34,10 +31,10 @@ def test_get_sections(loader):
 
 
 @pytest.mark.usefixtures("loader")
-def test_get_settings(loader):
+def test_get_settings(loader, root):
     settings = loader.get_settings(section="app")
     assert settings == {
-        "dummy_path": f"{here}/dummy_file.yaml",
+        "dummy_path": f"{root}/dummy_file.yaml",
         "pyramid.debug_authorization": False,
         "pyramid.debug_notfound": False,
         "pyramid.debug_routematch": False,
@@ -49,10 +46,10 @@ def test_get_settings(loader):
 
 
 @pytest.mark.usefixtures("loader")
-def test_get_wsgi_app_settings(loader):
+def test_get_wsgi_app_settings(loader, root):
     settings = loader.get_wsgi_app_settings()
     assert settings == {
-        "dummy_path": f"{here}/dummy_file.yaml",
+        "dummy_path": f"{root}/dummy_file.yaml",
         "pyramid.debug_authorization": False,
         "pyramid.debug_notfound": False,
         "pyramid.debug_routematch": False,
@@ -88,9 +85,9 @@ def test_get_wsgi_server(serve_paste, loader):
 
 
 @pytest.mark.usefixtures("loader")
-def test_get_wsgi_app(loader):
+def test_get_wsgi_app(loader, root):
     wsgi_app = loader.get_wsgi_app()
-    assert wsgi_app.registry.settings["dummy_path"] == f"{here}/dummy_file.yaml"
+    assert wsgi_app.registry.settings["dummy_path"] == f"{root}/dummy_file.yaml"
 
     http_start_response = {}
 
