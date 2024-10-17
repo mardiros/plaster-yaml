@@ -1,4 +1,8 @@
-"""And experimental module to load yaml file using paste.deploy (patched)"""
+"""
+And experimental module to load yaml file using paste.deploy (patched)
+
+The paste.deploy patch: https://github.com/Pylons/pastedeploy/pull/46/files
+"""
 
 from logging.config import dictConfig
 from pathlib import Path
