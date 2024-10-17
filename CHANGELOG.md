@@ -1,3 +1,9 @@
+## 1.1.0  -  2024-10-17
+
+* Register the plaster yaml entrypoints directly, the app does not need to register it
+* Fix supports for namespace package
+* Add supports for python 3.12 ( CI )
+
 ## 1.0.2  -  2024-04-18
 
 * Fix the get_settings() section, now the app may be named as your convenience
