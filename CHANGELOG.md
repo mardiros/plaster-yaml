@@ -1,10 +1,14 @@
+## 1.1.3  -  2024-10-19
+
+* Revert register the plaster yaml entrypoints directly, fixing a breaking change
+
 ## 1.1.2  -  2024-10-19
 
-* Also fix non namespace packaging container underscores 
+* Also fix non namespace packaging container underscores
 
 ## 1.1.1  -  2024-10-17
 
-* Add an experimental feature to get it working with uwsgi 
+* Add an experimental feature to get it working with uwsgi
 
 ## 1.1.0  -  2024-10-17
 
