@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "plaster_yaml"
+name = "plaster-yaml"
 version = "2.0.0"
 description = "A plaster plugin to configure pyramid app with Yaml"
 readme = "README.md"
@@ -8,6 +8,9 @@ homepage = "https://github.com/mardiros/plaster-yaml"
 repository = "https://github.com/mardiros/plaster-yaml"
 include = ["CHANGELOG.md"]
 license = "BSD-derived"
+packages = [
+    { include = "plaster_yaml", from = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"

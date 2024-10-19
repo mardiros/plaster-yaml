@@ -467,17 +467,17 @@ testing = ["coverage", "pytest (>=5.4.2)", "pytest-cov", "webtest (>=1.3.1)", "z
 
 [[package]]
 name = "pyramid-helloworld"
-version = "1.1.1"
+version = "1.1.0"
 description = "Hello World web app using pyramid."
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pyramid_helloworld-1.1.1-py3-none-any.whl", hash = "sha256:9ba1a83a54865a7e61f533572d604a7761cc3c3632a81313cc6d70162f91f224"},
-    {file = "pyramid_helloworld-1.1.1.tar.gz", hash = "sha256:1e055ee569c74e72f8d015bd99456a2ec88be788e61e6dd376bd5c7cad5a9ca2"},
+    {file = "pyramid_helloworld-1.1.0-py3-none-any.whl", hash = "sha256:337ddd868c4053ce45b8cde0dd6e21b07f7140ebdb5cd92defe62e40b09b4519"},
+    {file = "pyramid_helloworld-1.1.0.tar.gz", hash = "sha256:620db343caa9eb103c35ce0ba547b4d5a4180d7c20e23e0bfc5a42b8f2635b05"},
 ]
 
 [package.dependencies]
-plaster-yaml = ">=1.0.0,<2.0.0"
+plaster-yaml = ">0.1"
 pyramid = ">=2.0,<3.0"
 waitress = ">=2.0.0,<3.0.0"
 
