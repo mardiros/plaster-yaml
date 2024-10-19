@@ -1,3 +1,19 @@
+## 2.0.0  -  2024-10-19
+
+* /!\BREAKING CHANGE Restore the autoregistrion of the plaster-yaml file format in plaster.
+
+You don't need to register the plaster-yaml entrypoint for file format .yaml, .yml and .json
+
+Remove the entrypoint registered in your package for the migration
+
+Fix for poetry, application that use plater-yaml registered the plugin with
+those lines, remove them to avoid the conflict.
+
+```
+[tool.poetry.plugins."plaster.loader_factory"]
+"file+yaml" = "plaster_yaml:Loader"
+```
+
 ## 1.1.3  -  2024-10-19
 
 * Revert register the plaster yaml entrypoints directly, fixing a breaking change
