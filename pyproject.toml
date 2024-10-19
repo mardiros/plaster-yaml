@@ -18,6 +18,9 @@ PyYAML = "^6.0.1"
 [tool.poetry.plugins."paste.config_factory"]
 "config+yaml" = "plaster_yaml.paste_loader:load_yaml"
 
+[tool.poetry.plugins."plaster.loader_factory"]
+"file+yaml" = "plaster_yaml:Loader"
+
 [tool.poetry.group.dev]
 optional = true
 
