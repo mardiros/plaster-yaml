@@ -31,7 +31,7 @@ DEFAULT_LOGGING_CONFIG = {
 }
 
 
-RE_SANITIZE = re.compile("[^a-zA-Z0-9_]")
+RE_SANITIZE = re.compile("[^a-zA-Z0-9]")
 
 
 def sanitize_name(name):
