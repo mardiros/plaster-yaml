@@ -1,3 +1,7 @@
+## 2.0.1  -  2024-10-19
+
+* Rename plaster_yaml to plaster-yaml
+
 ## 2.0.0  -  2024-10-19
 
 * /!\BREAKING CHANGE Restore the autoregistrion of the plaster-yaml file format in plaster.
