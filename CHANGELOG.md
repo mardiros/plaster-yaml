@@ -1,3 +1,7 @@
+## 1.1.2  -  2024-10-19
+
+* Also fix non namespace packaging container underscores 
+
 ## 1.1.1  -  2024-10-17
 
 * Add an experimental feature to get it working with uwsgi 
