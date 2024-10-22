@@ -106,7 +106,7 @@ class Loader(plaster.ILoader):
     def get_wsgi_app_settings(self, name=None, defaults=None):
         return self.get_settings(name, defaults)
 
-    def setup_logging(self, config_vars):
+    def setup_logging(self, defaults=None):
         dictConfig(self._conf.get("logging", DEFAULT_LOGGING_CONFIG))
 
     def get_wsgi_server(self, name=None, defaults=None):
