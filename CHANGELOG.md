@@ -1,3 +1,7 @@
+## 2.0.2  -  2024-10-22
+
+* Fix the loader setup_logging interface method. defaults is not a mandatory parameter. 
+
 ## 2.0.1  -  2024-10-19
 
 * Rename plaster_yaml to plaster-yaml
