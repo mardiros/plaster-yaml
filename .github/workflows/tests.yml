@@ -44,6 +44,10 @@ jobs:
       - name: Install plaster-yaml
         run: poetry install --with dev
 
+      - name: Check types
+        run: |
+          poetry run mypy src/plaster_yaml/
+
       - name: Run tests
         run: |
           poetry run pytest tests  --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov=celery_yaml --cov-report=xml --cov-report=html
