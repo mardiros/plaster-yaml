@@ -80,7 +80,7 @@ class Loader(plaster.ILoader):
             "__file__": str(path.absolute()),
             "here": str(path.parent),
         }
-        with open(self.uri.path, "r") as downstream:
+        with open(self.uri.path) as downstream:
             with sub(downstream) as upstream:
                 self._conf = yaml.safe_load(upstream)
 
