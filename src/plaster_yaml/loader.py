@@ -4,10 +4,11 @@ import pathlib
 import re
 from importlib.metadata import EntryPoint
 from logging.config import dictConfig
-from typing import Callable
+from typing import Callable, List
 
 import plaster
 import yaml
+from envsub import sub
 
 from .compat import importlib_metadata
 
@@ -67,7 +68,7 @@ def resolve_use(use: str, entrypoint: str) -> Callable:
 
 
 class Loader(plaster.ILoader):
-    def __init__(self, uri):
+    def __init__(self, uri: plaster.PlasterURL) -> None:
         self.uri = uri
 
         path = pathlib.Path(self.uri.path)
@@ -75,10 +76,11 @@ class Loader(plaster.ILoader):
             "__file__": str(path.absolute()),
             "here": str(path.parent),
         }
-        with open(self.uri.path, "r") as stream:
-            self._conf = yaml.safe_load(stream)
+        with open(self.uri.path, "r") as downstream:
+            with sub(downstream) as upstream:
+                self._conf = yaml.safe_load(upstream)
 
-    def get_sections(self):
+    def get_sections(self) -> List[str]:
         return list(self._conf.keys())
 
     def get_settings(self, section=None, defaults=None):
