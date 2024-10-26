@@ -26,8 +26,6 @@ envsub = "^0.1.15"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.3.0"
-isort = "^5.13.2"
 # Tests
 gunicorn = "^20.1.0"
 PasteDeploy = "^3.1.0"

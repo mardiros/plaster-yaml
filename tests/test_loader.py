@@ -1,9 +1,9 @@
 from typing import Any
 from unittest.mock import call, patch
 
-from plaster import PlasterURL
 import pytest
 from gunicorn.app.pasterapp import serve as gunicorn_serve_paste
+from plaster import PlasterURL
 from waitress import serve_paste as waitress_serve_paste
 
 from plaster_yaml.loader import Loader, resolve_use
