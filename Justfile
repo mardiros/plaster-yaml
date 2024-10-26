@@ -35,6 +35,9 @@ black:
     poetry run isort .
     poetry run black .
 
+mypy:
+    poetry run mypy src/ tests/
+
 
 release major_minor_patch: test && changelog
     poetry version {{major_minor_patch}}
