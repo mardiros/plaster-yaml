@@ -4,13 +4,17 @@ import pathlib
 import re
 from importlib.metadata import EntryPoint
 from logging.config import dictConfig
-from typing import Callable, List
+from typing import Any, Callable, List, Mapping, MutableMapping, Union
 
 import plaster
 import yaml
 from envsub import sub
 
 from .compat import importlib_metadata
+
+Defaults = Union[Mapping[str, Any], None]
+Settings = MutableMapping[str, Any]
+WsgiApp = Any
 
 DEFAULT_LOGGING_CONFIG = {
     "version": 1,
@@ -35,16 +39,16 @@ DEFAULT_LOGGING_CONFIG = {
 RE_SANITIZE = re.compile("[^a-zA-Z0-9]")
 
 
-def sanitize_name(name):
+def sanitize_name(name: str) -> str:
     sanitized_name = RE_SANITIZE.sub("-", name)
     return sanitized_name.lower()
 
 
-def match_(ep: EntryPoint, pkg: str):
+def match_(ep: EntryPoint, pkg: str) -> bool:
     return sanitize_name(ep.module).startswith(sanitize_name(pkg))
 
 
-def resolve_use(use: str, entrypoint: str) -> Callable:
+def resolve_use(use: str, entrypoint: str) -> Callable[..., Any]:
     try:
         pkg, name = use.split("#")
     except ValueError:
@@ -83,7 +87,11 @@ class Loader(plaster.ILoader):
     def get_sections(self) -> List[str]:
         return list(self._conf.keys())
 
-    def get_settings(self, section=None, defaults=None):
+    def get_settings(
+        self,
+        section: Union[str, None] = None,
+        defaults: Defaults = None,
+    ) -> Settings:
         # fallback to the fragment from config_uri if no section is given
         if not section:
             section = self.uri.fragment or "app"
@@ -105,18 +113,24 @@ class Loader(plaster.ILoader):
                     settings[key] = val % self.defaults
         return settings
 
-    def get_wsgi_app_settings(self, name=None, defaults=None):
+    def get_wsgi_app_settings(
+        self, name: Union[str, None] = None, defaults: Defaults = None
+    ) -> Settings:
         return self.get_settings(name, defaults)
 
-    def setup_logging(self, defaults=None):
+    def setup_logging(self, defaults: Defaults = None) -> None:
         dictConfig(self._conf.get("logging", DEFAULT_LOGGING_CONFIG))
 
-    def get_wsgi_server(self, name=None, defaults=None):
+    def get_wsgi_server(
+        self, name: Union[str, None] = None, defaults: Defaults = None
+    ) -> Callable[[WsgiApp], None]:
         settings = self.get_settings("server", defaults)
         server = resolve_use(settings.pop("use"), "paste.server_runner")
         return lambda app: server(app, self.defaults, **settings)
 
-    def get_wsgi_app(self, name=None, defaults=None):
+    def get_wsgi_app(
+        self, name: Union[str, None] = None, defaults: Defaults = None
+    ) -> WsgiApp:
         settings = self.get_settings(name, defaults)
         use = resolve_use(settings.pop("use"), "paste.app_factory")
         return use(defaults, **settings)
