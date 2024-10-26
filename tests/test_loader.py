@@ -1,10 +1,12 @@
+from typing import Any
 from unittest.mock import call, patch
 
+from plaster import PlasterURL
 import pytest
 from gunicorn.app.pasterapp import serve as gunicorn_serve_paste
 from waitress import serve_paste as waitress_serve_paste
 
-from plaster_yaml.loader import resolve_use
+from plaster_yaml.loader import Loader, resolve_use
 
 
 def test_resolve_waitress():
@@ -41,8 +43,18 @@ def test_get_settings(loader, root):
         "pyramid.default_locale_name": "en",
         "pyramid.includes": [],
         "pyramid.reload_templates": False,
+        "sqlalchemy.url": "${DATABASE_URL}",
         "use": "egg:pyramid_helloworld",
     }
+
+
+def test_load_file_with_env(uri: PlasterURL, monkeypatch: Any):
+    monkeypatch.setenv("DATABASE_URL", "postgresql://scott:tiger@pg/db")
+    # we can't use the fixture, the file is loaded
+    # when it is constructed.
+    loader = Loader(uri)
+    settings = loader.get_settings()
+    assert settings["sqlalchemy.url"] == "postgresql://scott:tiger@pg/db"
 
 
 @pytest.mark.usefixtures("loader")
@@ -56,6 +68,7 @@ def test_get_wsgi_app_settings(loader, root):
         "pyramid.default_locale_name": "en",
         "pyramid.includes": [],
         "pyramid.reload_templates": False,
+        "sqlalchemy.url": "${DATABASE_URL}",
         "use": "egg:pyramid_helloworld",
     }
 

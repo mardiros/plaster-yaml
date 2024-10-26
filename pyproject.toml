@@ -17,6 +17,7 @@ python = "^3.9"
 importlib-metadata = { version = "^7.1.0", python = "<3.10" }
 plaster = "^1.0"
 PyYAML = "^6.0.1"
+envsub = "^0.1.15"
 
 [tool.poetry.plugins."plaster.loader_factory"]
 "file+yaml" = "plaster_yaml:Loader"
