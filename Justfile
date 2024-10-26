@@ -5,7 +5,7 @@ install:
     poetry install --with dev --with uwsgi
 
 lint:
-    poetry run flake8 && echo "$(tput setaf 10)Success: no lint issue$(tput setaf 7)"
+    poetry run ruff check .
 
 test: lint unittest
 
@@ -30,10 +30,9 @@ cov test_suite=default_unittest_suite:
     poetry run pytest --cov-report=html --cov={{package}} {{test_suite}}
     xdg-open htmlcov/index.html
 
-
-black:
-    poetry run isort .
-    poetry run black .
+fmt:
+    poetry run ruff check --fix .
+    poetry run ruff format src tests
 
 mypy:
     poetry run mypy src/ tests/

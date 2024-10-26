@@ -55,6 +55,15 @@ disallow_untyped_defs = true
 module = ["gunicorn.*", "plaster.*", "yaml", "waitress"]
 ignore_missing_imports = true
 
+[tool.ruff.lint]
+select = [
+    "B",   # bug bear security warning
+    "I",   # isort import order
+    "F",   # pyflakes
+    "UP",  # alter when better syntax is available
+    "RUF", #  the ruff devleoper's own rules
+]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
