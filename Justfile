@@ -2,7 +2,7 @@ package := 'plaster_yaml'
 default_unittest_suite := 'tests'
 
 install:
-    poetry install --with dev --with uwsgi
+    uv sync --group dev --group uwsgi
 
 lint:
     poetry run ruff check .
