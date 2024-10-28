@@ -54,6 +54,10 @@ disallow_untyped_defs = true
 module = ["gunicorn.*", "plaster.*", "yaml", "waitress"]
 ignore_missing_imports = true
 
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
 [tool.ruff.lint]
 select = [
     "B",   # bug bear security warning
