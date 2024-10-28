@@ -2,9 +2,10 @@
 
 import pathlib
 import re
+from collections.abc import Mapping, MutableMapping
 from importlib.metadata import EntryPoint
 from logging.config import dictConfig
-from typing import Any, Callable, List, Mapping, MutableMapping, Union
+from typing import Any, Callable, Union
 
 import plaster
 import yaml
@@ -84,7 +85,7 @@ class Loader(plaster.ILoader):
             with sub(downstream) as upstream:
                 self._conf = yaml.safe_load(upstream)
 
-    def get_sections(self) -> List[str]:
+    def get_sections(self) -> list[str]:
         return list(self._conf.keys())
 
     def get_settings(
