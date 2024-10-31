@@ -1,6 +1,13 @@
+## 3.0.0  -  2024-10-31
+
+* Remove python 3.8 support
+* Substitute environment variable with [envsub](https://pypi.org/project/envsub/)
+* Add typing support
+* CI and packaging update
+
 ## 2.0.2  -  2024-10-22
 
-* Fix the loader setup_logging interface method. defaults is not a mandatory parameter. 
+* Fix the loader setup_logging interface method. defaults is not a mandatory parameter.
 
 ## 2.0.1  -  2024-10-19
 

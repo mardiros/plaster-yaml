@@ -1,6 +1,6 @@
 [project]
 name = "plaster-yaml"
-version = "2.0.2"
+version = "3.0.0"
 description = "A plaster plugin to configure pyramid app with Yaml"
 readme = "README.md"
 authors = [{ name = "Guillaume Gauvrit", email = "guillaume@gauvr.it" }]
