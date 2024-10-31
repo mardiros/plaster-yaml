@@ -27,7 +27,7 @@ jobs:
 
       - name: "Install"
         run: |
-          pip install dist/celery_yaml-*.whl --force-reinstall
+          pip install dist/plaster_yaml-*.whl --force-reinstall
 
       - name: "Test sdist"
         run: |
