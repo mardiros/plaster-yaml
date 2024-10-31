@@ -88,5 +88,3 @@ jobs:
     with:
       release-version: ${{ needs.plan.outputs.release_version }}
       dry-run: ${{ needs.plan.outputs.dry-run == 'true' }}
-    secrets:
-      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
