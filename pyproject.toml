@@ -4,7 +4,7 @@ version = "2.0.2"
 description = "A plaster plugin to configure pyramid app with Yaml"
 readme = "README.md"
 authors = [{ name = "Guillaume Gauvrit", email = "guillaume@gauvr.it" }]
-license = "BSD-derived"
+license = {text = "BSD-derived"}
 requires-python = ">=3.9"
 dependencies = [
     "importlib-metadata >=7.1.0; python_version <= '3.10'",
