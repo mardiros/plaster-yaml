@@ -53,13 +53,7 @@ jobs:
       run: echo "The release version is ${{ steps.release-version.outputs.release_version }}"
 
   unit-tests:
-    needs:
-      - unittests
     uses: ./.github/workflows/tests.yml
-    with:
-      release-version: ${{ needs.plan.outputs.release_version }}
-      dry-run: ${{ needs.plan.outputs.dry-run == 'true' }}
-      python-version: '3.12'
 
   build-artifacts:
     needs:
