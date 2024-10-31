@@ -373,7 +373,7 @@ dev = [
     { name = "gunicorn", specifier = ">=20.1.0,<21" },
     { name = "mypy", specifier = ">=1.13.0,<2" },
     { name = "pastedeploy", specifier = ">=3.1.0,<4" },
-    { name = "pyramid-helloworld", specifier = ">=2.0.0,<3" },
+    { name = "pyramid-helloworld", specifier = ">=2.0.3,<3" },
     { name = "pytest", specifier = ">=6.2.5,<7" },
     { name = "pytest-cov", specifier = ">=5.0.0,<6" },
     { name = "waitress", specifier = ">=2.0.0,<3" },
@@ -438,16 +438,16 @@ wheels = [
 
 [[package]]
 name = "pyramid-helloworld"
-version = "2.0.0"
+version = "2.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "plaster-yaml" },
     { name = "pyramid" },
     { name = "waitress" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6a/07/a87f1b42e86ebce7870b8c5d586523a1e1a490ca580eaf2fbb3f78d16874/pyramid_helloworld-2.0.0.tar.gz", hash = "sha256:04ca7cd4761b285552f4ba9cf504935c932715868743559e24d7f2733c9e8bfa", size = 2695 }
+sdist = { url = "https://files.pythonhosted.org/packages/53/e0/8f0d0ecdc70a6496be9270bce7058ff39636cc0ddae415a068bf1971570a/pyramid_helloworld-2.0.4.tar.gz", hash = "sha256:c62a017b77233d160124b4323b381323d6d263f68cd09b88237aa6bb414a91b3", size = 3147 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/86/425ded9ae713966059bafeef1605f837dc1026f5b01b1c31ba6590083d47/pyramid_helloworld-2.0.0-py3-none-any.whl", hash = "sha256:cfad08204074a82f3ce6098379c4a9e6ce60b5257b9b2ac3ea73a356d3828b48", size = 3999 },
+    { url = "https://files.pythonhosted.org/packages/64/2e/51c8737253d5ddefd5e0a47df2efe3073ec26fcf2a892a62709f52d84012/pyramid_helloworld-2.0.4-py3-none-any.whl", hash = "sha256:4b73de69f84477317ed55760f57e479803edac94cbde45af27e40b842b291b62", size = 4936 },
 ]
 
 [[package]]
