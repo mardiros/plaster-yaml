@@ -2,7 +2,7 @@
 
 Configure your applications with YAML (and JSON) structured data.
 
-[![CI](https://github.com/mardiros/plaster-yaml/actions/workflows/main.yml/badge.svg)](https://github.com/mardiros/plaster-yaml/actions/workflows/main.yml)
+[![CI](https://github.com/mardiros/plaster-yaml/actions/workflows/tests.yml/badge.svg)](https://github.com/mardiros/plaster-yaml/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/mardiros/plaster-yaml/graph/badge.svg?token=LKGPH2OJDN)](https://codecov.io/gh/mardiros/plaster-yaml)
 
 ## Introduction
