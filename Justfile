@@ -39,8 +39,8 @@ mypy:
 
 
 release major_minor_patch: test && changelog
-    uvx pdm bump {{major_minor_patch}}
-    uv sync
+    uvx --with=pdm,pdm-bump --python-preference system pdm bump {{major_minor_patch}}
+    uv sync --frozen --group dev --group uwsgi
 
 changelog:
     uv run python scripts/write_changelog.py
