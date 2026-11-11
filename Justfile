@@ -2,7 +2,13 @@ package := 'plaster_yaml'
 default_unittest_suite := 'tests'
 
 install:
+    uv sync --group dev --group uwsgi --frozen
+
+update:
     uv sync --group dev --group uwsgi
+
+upgrade:
+    uv sync --group dev --group uwsgi --upgrade
 
 lint:
     uv run ruff check .

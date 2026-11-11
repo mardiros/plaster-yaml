@@ -2,18 +2,17 @@
 
 import pathlib
 import re
-from collections.abc import Mapping, MutableMapping
+from collections.abc import Callable, Mapping, MutableMapping
+from importlib import metadata
 from importlib.metadata import EntryPoint
 from logging.config import dictConfig
-from typing import Any, Callable, Union
+from typing import Any
 
 import plaster
 import yaml
 from envsub import sub
 
-from .compat import importlib_metadata
-
-Defaults = Union[Mapping[str, Any], None]
+Defaults = Mapping[str, Any] | None
 Settings = MutableMapping[str, Any]
 WsgiApp = Any
 
@@ -61,7 +60,7 @@ def resolve_use(use: str, entrypoint: str) -> Callable[..., Any]:
     if scheme != "egg":
         raise ValueError(f"{use}: unsupported scheme {scheme}")
 
-    eps = importlib_metadata.entry_points(group=entrypoint, name=name)
+    eps = metadata.entry_points(group=entrypoint, name=name)
 
     runners = [ep for ep in eps if match_(ep, pkg)]
     if not runners:
@@ -90,7 +89,7 @@ class Loader(plaster.ILoader):
 
     def get_settings(
         self,
-        section: Union[str, None] = None,
+        section: str | None = None,
         defaults: Defaults = None,
     ) -> Settings:
         # fallback to the fragment from config_uri if no section is given
@@ -115,7 +114,7 @@ class Loader(plaster.ILoader):
         return settings
 
     def get_wsgi_app_settings(
-        self, name: Union[str, None] = None, defaults: Defaults = None
+        self, name: str | None = None, defaults: Defaults = None
     ) -> Settings:
         return self.get_settings(name, defaults)
 
@@ -123,14 +122,14 @@ class Loader(plaster.ILoader):
         dictConfig(self._conf.get("logging", DEFAULT_LOGGING_CONFIG))
 
     def get_wsgi_server(
-        self, name: Union[str, None] = None, defaults: Defaults = None
+        self, name: str | None = None, defaults: Defaults = None
     ) -> Callable[[WsgiApp], None]:
         settings = self.get_settings("server", defaults)
         server = resolve_use(settings.pop("use"), "paste.server_runner")
         return lambda app: server(app, self.defaults, **settings)
 
     def get_wsgi_app(
-        self, name: Union[str, None] = None, defaults: Defaults = None
+        self, name: str | None = None, defaults: Defaults = None
     ) -> WsgiApp:
         settings = self.get_settings(name, defaults)
         use = resolve_use(settings.pop("use"), "paste.app_factory")

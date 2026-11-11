@@ -5,12 +5,11 @@ description = "A plaster plugin to configure pyramid app with Yaml"
 readme = "README.md"
 authors = [{ name = "Guillaume Gauvrit", email = "guillaume@gauvr.it" }]
 license = { text = "BSD-derived" }
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = [
-    "importlib-metadata >=7.1.0; python_version <= '3.10'",
-    "plaster >=1.0,<2",
+    "plaster >=1,<2",
     "PyYAML >=6.0.1,<7",
-    "envsub >=0.1.15,<0.2",
+    "envsub >=1,<2",
 ]
 classifiers = [
     "Framework :: Pyramid",
@@ -42,15 +41,16 @@ Changelog = "https://github.com/mardiros/plaster-yaml/blob/main/CHANGELOG.md"
 [dependency-groups]
 dev = [
     # Tests
-    "gunicorn >=20.1.0,<21",
-    "PasteDeploy >=3.1.0,<4",
-    "pytest >=6.2.5,<7",
-    "waitress >=2.0.0,<3",
-    "pyramid-helloworld >=2.0.3,<3",
-    "pytest-cov >=5.0.0,<6",
+    "pastedeploy >=3.1.0,<4",
     "flake8 >=7.0.0,<8",
-    "mypy >=1.13.0,<2",
+    "gunicorn >=27,<28",
     "legacy-cgi >=2.6.2, <3; python_version >= '3.13'",
+    "mypy >=1.13.0,<2",
+    "pyramid-helloworld >=2.0.3,<3",
+    "pytest >=6.2.5,<7",
+    "pytest-cov >=5.0.0,<6",
+    "setuptools>=81,<82",
+    "waitress >=2.0.0,<3",
 ]
 uwsgi = ["pastedeploy >=3.1.0,<4"]
 
@@ -71,7 +71,7 @@ ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [
