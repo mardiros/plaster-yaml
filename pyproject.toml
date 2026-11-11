@@ -12,6 +12,20 @@ dependencies = [
     "PyYAML >=6.0.1,<7",
     "envsub >=0.1.15,<0.2",
 ]
+classifiers = [
+    "Framework :: Pyramid",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
 
 [project.urls]
 Homepage = "https://github.com/mardiros/plaster-yaml"
